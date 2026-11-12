@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Sala do Passado — SalaDoPassado</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="/static/css/style.css" rel="stylesheet"/>
+<style id="hyper-integration-style">
+/* Isolated login appearance inspired by the user's Hyper_login.html. */
+#view-auth{position:relative!important;z-index:5;min-height:100dvh;background:radial-gradient(ellipse 550px 370px at 50% 35%,#1b1820,#0d0c10 65%,#08080a)!important;color:#f5effc}
+#view-auth .auth-wrapper{min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:22px}
+#view-auth .auth-card{position:relative!important;opacity:1!important;transform:none!important;pointer-events:auto!important;width:365px;max-width:100%;border:1px solid #302a36;border-radius:16px;background:#0e0e11!important;box-shadow:0 20px 75px #0008;padding:24px 20px}
+#view-auth .auth-header{text-align:center;margin-bottom:25px}
+#view-auth .hyper-login-brand{display:flex;align-items:center;justify-content:center;gap:9px;margin:0 auto 22px;line-height:1}
+#view-auth .hyper-login-x{font:bold italic 57px Arial,sans-serif;line-height:1;color:#b36cef;filter:drop-shadow(0 4px 12px #8f42ee6b)}
+#view-auth .hyper-login-brand b{display:block;font:bold 33px Arial,sans-serif;letter-spacing:-1px;color:white}
+#view-auth .hyper-login-brand small{display:block;text-align:center;font-size:9px;letter-spacing:3px;margin-top:5px;color:#cfc0df}
+#view-auth .auth-title{font-size:18px;color:white;margin:0 0 5px}
+#view-auth .auth-subtitle{font-size:12px;color:#aaa5af}
+#view-auth label{color:#c3b9ce;font-size:11px}
+#view-auth input{color:white!important;background:#1a191d!important;border:1px solid #37333e!important;border-radius:9px!important;min-height:41px!important;pointer-events:auto!important;position:relative!important;z-index:1!important}
+#view-auth input:focus{border-color:#a768ed!important;outline:2px solid #a768ed44!important}
+#view-auth #btn-login{background:linear-gradient(125deg,#b475f4,#823ad3)!important;color:white!important;border:1px solid #b079f0!important;border-radius:9px}
+#view-auth .password-wrapper{position:relative}
+#view-auth #btn-toggle-password{position:relative;z-index:2}
+#hyperShell{position:fixed;inset:0;background:#080611;z-index:500;display:none}
+#hyperShell[hidden]{display:none!important}
+#hyperShell.is-active{display:block!important}
+#hyperMenuFrame{display:block;width:100%;height:100%;border:0;background:#080611}
+html.hyper-embedded-mode #view-auth{display:none!important}
+html.hyper-embedded-mode .dashboard-tabs{display:none!important}
+html.hyper-embedded-mode #view-dashboard .navbar{display:none!important}
+html.hyper-embedded-mode #view-dashboard .dashboard-content{padding:13px!important;max-width:none!important;margin:0!important}
+html.hyper-embedded-mode #view-dashboard{min-height:100dvh!important}
+html.hyper-embedded-mode body{background:#101016!important}
+html.hyper-embedded-mode .dashboard-tabs{margin-top:0!important}
+</style><style id="hyper-embedded-clean-content">
+/* Only the active platform's real content in the embedded view. */
+html.hyper-embedded-mode #view-dashboard .dashboard-header-block,
+html.hyper-embedded-mode #view-dashboard .controls-bar,
+html.hyper-embedded-mode #view-dashboard .navbar {display:none!important}
+html.hyper-embedded-mode #view-dashboard .dashboard-content{
+  padding:0!important;margin:0!important;max-width:none!important;
+  width:100%!important;gap:0!important;background:transparent!important}
+html.hyper-embedded-mode #view-dashboard .tab-content-area{
+  padding:0!important;margin:0!important;border:0!important;
+  width:100%!important;background:transparent!important;box-shadow:none!important}
+html.hyper-embedded-mode #view-dashboard{background:transparent!important;min-height:100dvh!important}
+html.hyper-embedded-mode body{background:transparent!important}
+html.hyper-embedded-mode #view-dashboard .tab-pane{padding:0!important;margin:0!important}
+</style><style id="hyper-remember-account-style">
+#view-auth .hyper-remember-row{display:flex;flex-direction:column;gap:5px;margin:-2px 0 14px;color:#cfc4da}
+#view-auth .hyper-remember-label{display:flex;align-items:center;gap:9px;font-size:12px;cursor:pointer;letter-spacing:0}
+#view-auth .hyper-remember-label input[type="checkbox"]{appearance:none!important;-webkit-appearance:none!important;display:inline-grid!important;place-content:center!important;box-sizing:border-box!important;width:18px!important;height:18px!important;min-width:18px!important;min-height:18px!important;flex:0 0 18px!important;margin:0!important;padding:0!important;border:1px solid #8751b5!important;border-radius:5px!important;background:#21162b!important;box-shadow:none!important;cursor:pointer;vertical-align:middle;outline-offset:3px}
+#view-auth .hyper-remember-label input[type="checkbox"]:checked{background:linear-gradient(135deg,#b66cf2,#7939c6)!important;border-color:#c394fc!important}
+#view-auth .hyper-remember-label input[type="checkbox"]:checked::before{content:"";display:block;width:9px;height:5px;border:solid #fff;border-width:0 0 2px 2px;transform:translateY(-1px) rotate(-45deg)}
+#view-auth .hyper-remember-label input[type="checkbox"]:focus-visible{outline:2px solid #d4a7ff}
+#view-auth #input-uf[readonly]{opacity:1!important;cursor:default;background:#1e1b25!important;color:#f4eafa!important;text-align:center}
+#view-auth .hyper-remember-row small{font-size:10px;line-height:1.45;color:#93869e;padding-left:24px}
+</style>
+<style id="hyper-task-status-tabs-style">
+/* Abas independentes para tarefas e redacoes, integradas ao tema Hyper. */
+.hyper-status-tabs{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0 18px;padding:4px 0}
+.hyper-status-tab{appearance:none;border:1px solid rgba(173,113,236,.28);background:rgba(19,15,29,.75);color:#d7c6e8;padding:11px 19px;border-radius:14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:background .16s,border-color .16s,box-shadow .16s;white-space:nowrap}
+.hyper-status-tab:hover{background:rgba(106,48,150,.25);border-color:rgba(195,132,249,.6)}
+.hyper-status-tab.active,.hyper-status-tab[aria-selected="true"]{background:linear-gradient(125deg,#7132a5,#a35be7);border-color:#c287ff;color:#fff;box-shadow:0 4px 18px rgba(145,73,210,.2)}
+.hyper-status-tab:focus-visible{outline:2px solid #d1a0ff;outline-offset:3px}
+.hyper-status-tab .hyper-count{margin-left:6px;padding:2px 7px;border-radius:99px;background:rgba(255,255,255,.1);font-size:11px}
+@media(max-width:650px){.hyper-status-tabs{gap:6px}.hyper-status-tab{flex:1;padding:10px 7px;font-size:11px}}
+</style>
+</head>
+<body>
+<div aria-live="polite" class="toast-container" id="toast-container"></div>
+<div class="view active" id="view-auth">
+<div class="auth-wrapper">
+<div class="auth-card glass-panel">
+<div class="auth-header"><div class="hyper-login-brand"><span class="hyper-login-x">X</span><div><b>HYPER</b><small>FUTURO X</small></div></div><h1 class="auth-title">Entrar na conta</h1><p class="auth-subtitle">Acesse sua central pessoal de estudos</p></div>
+<form autocomplete="on" class="auth-form" id="form-login">
+<div class="form-row-grid">
+<div class="form-group field-ra">
+<label for="input-ra">RA (Registro do Aluno)</label>
+<input autocomplete="username" autofocus="" id="input-ra" name="username" placeholder="Ex: 000123456789" required="" type="text"/>
+</div>
+<div class="form-group field-digito">
+<label for="input-digito">Dígito</label>
+<input id="input-digito" maxlength="2" placeholder="0" required="" type="text"/>
+</div>
+<div class="form-group field-uf">
+<label for="input-uf">UF</label>
+<input id="input-uf" maxlength="2" required="" type="text" value="SP" readonly aria-readonly="true" title="UF fixa: São Paulo"/>
+</div>
+</div>
+<div class="form-group">
+<label for="input-password">Senha SED</label>
+<div class="password-wrapper">
+<input autocomplete="current-password" id="input-password" placeholder="••••••••••••" required="" type="password"/>
+<button class="btn-toggle-pwd" id="btn-toggle-password" tabindex="-1" title="Mostrar senha" type="button">
+<svg fill="none" height="18" id="eye-icon" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18">
+<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+<circle cx="12" cy="12" r="3"></circle>
+</svg>
+</button>
+</div>
+</div>
+<div class="hyper-remember-row">
+<label class="hyper-remember-label" for="hyper-remember-account">
+<input type="checkbox" id="hyper-remember-account"/>
+<span>Lembrar meu RA neste dispositivo</span>
+</label>
+
+</div>
+<button class="btn btn-primary btn-block btn-login" id="btn-login" type="submit">
+<span class="btn-text">Entrar na Plataforma</span>
+<span class="spinner hidden"></span>
+</button>
+</form>
+
+</div>
+</div>
+</div>
+<div class="view" id="view-dashboard">
+<header class="navbar glass-panel">
+<div class="nav-container">
+<div class="nav-brand">
+<div class="logo-badge sm">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18">
+<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+</svg>
+</div>
+<div class="brand-info">
+<span class="brand-name">Sala do Passado</span>
+<span class="brand-badge">SalaDoPassado</span>
+</div>
+</div>
+<div class="nav-actions">
+<div class="user-card" id="nav-user-card">
+<div class="user-avatar" id="nav-avatar">A</div>
+<div class="user-info">
+<span class="user-name" id="nav-name">Carregando...</span>
+<span class="user-meta" id="nav-ra">RA: -</span>
+</div>
+</div>
+<button class="btn btn-ghost btn-icon-only" id="btn-logout" title="Sair da Conta">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18">
+<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+<polyline points="16 17 21 12 16 7"></polyline>
+<line x1="21" x2="9" y1="12" y2="12"></line>
+</svg>
+</button>
+</div>
+</div>
+</header>
+<main class="dashboard-content">
+<div class="dashboard-header-block">
+<div class="dashboard-titles">
+<h2 class="section-title">Minhas Atividades</h2>
+<p class="section-subtitle">Visualize, resolva automaticamente com IA e envie suas tarefas e redações.</p>
+</div>
+<button class="btn btn-secondary btn-sm" id="btn-refresh-tasks" title="Recarregar tarefas">
+<svg fill="none" height="15" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="15">
+<path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+</svg>
+<span>Atualizar</span>
+</button>
+</div>
+<div class="controls-bar">
+<div class="tabs-nav">
+<button class="tab-btn active" data-tab="tab-tasks">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16">
+<path d="M9 11l3 3L22 4"></path>
+<path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+</svg>
+<span>Tarefas Objetivas</span>
+<span class="tab-badge" id="badge-tasks-count">0</span>
+</button>
+<button class="tab-btn" data-tab="tab-essays">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16">
+<path d="M12 20h9"></path>
+<path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+</svg>
+<span>Redações</span>
+<span class="tab-badge" id="badge-essays-count">0</span>
+</button>
+<button class="tab-btn" data-tab="tab-matific">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16">
+<circle cx="12" cy="12" r="10"></circle>
+<path d="M8 12h8"></path>
+<path d="M12 8v8"></path>
+</svg>
+<span>Matific</span>
+<span class="tab-badge badge-cyan" id="badge-matific-count">0</span>
+</button>
+<button class="tab-btn" data-tab="tab-leiasp">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16">
+<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+</svg>
+<span>LeiaSP</span>
+<span class="tab-badge badge-emerald" id="badge-leiasp-count">0</span>
+</button>
+</div>
+<div class="search-box">
+<svg class="search-icon" fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16">
+<circle cx="11" cy="11" r="8"></circle>
+<line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+</svg>
+<input id="input-search-tasks" placeholder="Filtrar por título ou matéria..." type="text"/>
+</div>
+</div>
+<div class="tab-content-area">
+<section class="tab-pane active" id="tab-tasks">
+<div class="tasks-toolbar glass-panel" id="tasks-toolbar">
+<div class="tasks-toolbar-left">
+<label class="checkbox-container tasks-select-all-label">
+<input id="tasks-select-all" type="checkbox"/>
+<span>Selecionar Todas</span>
+</label>
+<span class="stat-pill" id="tasks-selected-count">0 selecionadas</span>
+</div>
+<div class="tasks-toolbar-right">
+<button class="btn btn-primary btn-sm hidden" id="btn-batch-solve-tasks">
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+<span>Fazer Selecionadas em Paralelo</span>
+</button>
+</div>
+</div>
+<div class="hyper-status-tabs" role="group" aria-label="Filtrar tarefas por situação" data-hyper-filters="tasks">
+  <button type="button" class="hyper-status-tab active" data-status="pending" aria-pressed="true">A Fazer<span class="hyper-count" data-filter-count="pending">0</span></button>
+  <button type="button" class="hyper-status-tab" data-status="draft" aria-pressed="false">Rascunhos<span class="hyper-count" data-filter-count="draft">0</span></button>
+  <button type="button" class="hyper-status-tab" data-status="expired" aria-pressed="false">Expiradas<span class="hyper-count" data-filter-count="expired">0</span></button>
+</div>
+<div id="tasks-batches-list"></div>
+<div class="tasks-grid" id="tasks-grid"></div>
+</section>
+<section class="tab-pane" id="tab-essays">
+<div class="hyper-status-tabs" role="group" aria-label="Filtrar redações por situação" data-hyper-filters="essays">
+  <button type="button" class="hyper-status-tab active" data-status="pending" aria-pressed="true">A Fazer<span class="hyper-count" data-filter-count="pending">0</span></button>
+  <button type="button" class="hyper-status-tab" data-status="draft" aria-pressed="false">Rascunhos<span class="hyper-count" data-filter-count="draft">0</span></button>
+  <button type="button" class="hyper-status-tab" data-status="expired" aria-pressed="false">Expiradas<span class="hyper-count" data-filter-count="expired">0</span></button>
+</div>
+<div class="tasks-grid" id="essays-grid"></div>
+</section>
+<section class="tab-pane" id="tab-matific">
+<div class="matific-subnav glass-panel">
+<div class="subnav-pills">
+<button class="subnav-pill active" data-subtab="assigned">
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+<span>Trabalho Atribuído</span>
+<span class="subnav-badge" id="badge-matific-assigned">0</span>
+</button>
+<button class="subnav-pill" data-subtab="adventure">
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" x2="8" y1="2" y2="18"></line><line x1="16" x2="16" y1="6" y2="22"></line></svg>
+<span>Ilha da Aventura</span>
+<span class="subnav-badge" id="badge-matific-adventure">0</span>
+</button>
+<button class="subnav-pill" data-subtab="batch">
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+<span>Lote Automático</span>
+</button>
+<button class="subnav-pill" data-subtab="profile">
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+<span>Perfil &amp; Customização</span>
+</button>
+</div>
+<div class="matific-quick-stats" id="matific-quick-stats">
+<span class="stat-tag coins-tag"><span class="icon">🪙</span> <strong id="quick-coins">-</strong></span>
+<span class="stat-tag xp-tag"><span class="icon">⭐</span> <strong id="quick-xp">- XP</strong></span>
+<span class="stat-tag rank-tag"><span class="icon">🏆</span> Rank <strong id="quick-rank">-</strong></span>
+</div>
+</div>
+<div class="matific-subpane-content">
+<div class="matific-subpane active" id="matific-subpane-assigned">
+<div class="tasks-grid" id="matific-assigned-grid"></div>
+</div>
+<div class="matific-subpane" id="matific-subpane-adventure">
+<div class="tasks-grid" id="matific-adventure-grid"></div>
+</div>
+<div class="matific-subpane" id="matific-subpane-batch">
+<div class="batch-layout-grid">
+<div class="batch-config-card glass-panel">
+<h3 class="card-section-title">Configurações do Lote</h3>
+<p class="card-section-desc">Execute múltiplos episódios automaticamente com tempos realistas e proteção anti-detecção.</p>
+<div class="form-group">
+<label>Origem dos Episódios</label>
+<select class="form-control" id="batch-source-select">
+<option value="all">Todas as Tarefas Pendentes (Atribuídas + Aventura)</option>
+<option value="assigned">Apenas Trabalho Atribuído (Campanhas)</option>
+<option value="adventure">Apenas Ilha da Aventura</option>
+</select>
+</div>
+<div class="form-row-grid">
+<div class="form-group">
+<label>Precisão Alvo</label>
+<select class="form-control" id="batch-accuracy-select">
+<option value="realistic">Realista (Erros naturais ~85-95%)</option>
+<option value="perfect">100% Perfeito (Nota Máxima)</option>
+</select>
+</div>
+<div class="form-group">
+<label>Velocidade / Modo</label>
+<select class="form-control" id="batch-speed-select">
+<option value="fast">Rápido (~1.0 a 2.5 min/tarefa)</option>
+<option value="human">Humanizado (~3.0 a 6.0 min/tarefa)</option>
+</select>
+</div>
+</div>
+<div class="batch-actions-row">
+<button class="btn btn-primary btn-block" id="btn-start-batch">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+<span>Iniciar Lote Matific</span>
+</button>
+<button class="btn btn-danger btn-block hidden" id="btn-stop-batch">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><rect height="12" width="12" x="6" y="6"></rect></svg>
+<span>Interromper Lote</span>
+</button>
+</div>
+</div>
+<div class="batch-status-card glass-panel">
+<div class="batch-header-status">
+<h3 class="card-section-title">Status da Execução em Lote</h3>
+<span class="badge badge-neutral" id="batch-status-badge">Inativo</span>
+</div>
+<div class="batch-progress-wrapper">
+<div class="batch-progress-labels">
+<span id="batch-current-title">Nenhum lote em execução</span>
+<span id="batch-progress-counter">0 / 0</span>
+</div>
+<div class="progress-bar-bg">
+<div class="progress-bar-fill" id="batch-progress-fill" style="width: 0%;"></div>
+</div>
+</div>
+<div class="terminal-container">
+<div class="terminal-header">
+<span class="terminal-dot red"></span>
+<span class="terminal-dot yellow"></span>
+<span class="terminal-dot green"></span>
+<span class="terminal-title">Log de Execução em Tempo Real</span>
+</div>
+<div class="terminal-body" id="batch-terminal-logs">
+<div class="log-line text-muted">Aguardando início do lote...</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="matific-subpane" id="matific-subpane-profile">
+<div class="profile-layout-grid">
+<div class="profile-stats-card glass-panel">
+<div class="profile-card-header">
+<div class="student-avatar-badge" id="profile-avatar-initial">A</div>
+<div>
+<h3 class="profile-name" id="profile-student-name">Estudante</h3>
+<p class="profile-meta">Status &amp; Progressão Matific</p>
+</div>
+</div>
+<div class="stats-cards-grid">
+<div class="stat-box glass-panel">
+<span class="stat-icon">🪙</span>
+<div class="stat-content">
+<span class="stat-value" id="profile-coins">-</span>
+<span class="stat-label">Moedas</span>
+</div>
+</div>
+<div class="stat-box glass-panel">
+<span class="stat-icon">⭐</span>
+<div class="stat-content">
+<span class="stat-value" id="profile-xp">-</span>
+<span class="stat-label">Pontos XP</span>
+</div>
+</div>
+<div class="stat-box glass-panel">
+<span class="stat-icon">🏆</span>
+<div class="stat-content">
+<span class="stat-value" id="profile-rank">-</span>
+<span class="stat-label">Rank do Aluno</span>
+</div>
+</div>
+<div class="stat-box glass-panel">
+<span class="stat-icon">⏱️</span>
+<div class="stat-content">
+<span class="stat-value" id="profile-goal">-</span>
+<span class="stat-label">Meta Semanal (30m)</span>
+</div>
+</div>
+</div>
+<div class="profile-quick-actions">
+<button class="btn btn-secondary btn-sm" id="btn-repair-customization" title="Corrige chaves corrompidas para evitar erro 604 no Matific original">
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+<span>Reparar Chaves</span>
+</button>
+<button class="btn btn-secondary btn-sm" id="btn-open-set-stats">
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+<span>Ajustar Moedas/XP</span>
+</button>
+</div>
+</div>
+<div class="customizer-card glass-panel">
+<h3 class="card-section-title">Equipamentos &amp; Personalização</h3>
+<p class="card-section-desc">Equipe itens obtidos para seu Avatar e Aeronave.</p>
+<div class="customizer-slots-grid" id="customizer-slots-grid"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="tab-pane" id="tab-leiasp">
+<div class="leiasp-toolbar glass-panel">
+<div class="leiasp-stats">
+<div class="stat-pill"><span class="stat-label">Total de Livros:</span> <strong id="leiasp-stat-total">0</strong></div>
+<div class="stat-pill"><span class="stat-label">Lidos:</span> <strong id="leiasp-stat-completed">0</strong></div>
+<div class="stat-pill"><span class="stat-label">Pendentes:</span> <strong id="leiasp-stat-pending">0</strong></div>
+</div>
+<div class="leiasp-actions">
+<button class="btn btn-primary btn-sm" id="btn-leiasp-seq">
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+<span>Ler Todos em Sequência</span>
+</button>
+<button class="btn btn-secondary btn-sm" id="btn-refresh-leiasp" title="Recarregar biblioteca">
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+<span>Atualizar</span>
+</button>
+</div>
+</div>
+<div class="leiasp-active-banner glass-panel hidden" id="leiasp-active-banner">
+<div class="active-banner-left">
+<div class="active-banner-cover-wrapper">
+<img alt="Capa" class="active-banner-cover" id="active-banner-cover" onerror="this.style.display='none';" src=""/>
+<div class="active-banner-cover-placeholder" id="active-banner-cover-fallback">
+<svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+</div>
+</div>
+<div class="active-banner-info">
+<div class="active-banner-header">
+<span class="status-indicator-dot" id="active-banner-dot"></span>
+<span class="active-banner-state" id="active-banner-status">Lendo em segundo plano...</span>
+<span class="badge badge-indigo hidden" id="active-banner-queue-badge">Livro 1/1</span>
+</div>
+<h4 class="active-banner-title" id="active-banner-title">Título do Livro</h4>
+<div class="active-banner-progress-row">
+<div class="active-banner-progress-bar-bg">
+<div class="active-banner-progress-bar" id="active-banner-progress-bar"></div>
+</div>
+<span class="active-banner-percent" id="active-banner-percent">0%</span>
+</div>
+<div class="active-banner-meta">
+<span>Página: <strong id="active-banner-page">0/0</strong></span>
+<span class="active-banner-log-snippet text-muted" id="active-banner-last-log">Aguardando telemetria...</span>
+</div>
+</div>
+</div>
+<div class="active-banner-actions">
+<button class="btn btn-secondary btn-sm" id="btn-banner-pause-resume" title="Pausar ou Retomar">
+<svg fill="none" height="14" id="icon-banner-pause" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><rect height="16" width="4" x="6" y="4"></rect><rect height="16" width="4" x="14" y="4"></rect></svg>
+<span id="btn-banner-pause-text">Pausar</span>
+</button>
+<button class="btn btn-danger btn-sm" id="btn-banner-stop" title="Interromper">
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><rect height="12" width="12" x="6" y="6"></rect></svg>
+<span>Parar</span>
+</button>
+<button class="btn btn-primary btn-sm" id="btn-banner-open-modal" title="Ver logs detalhados">
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" x2="20" y1="19" y2="19"></line></svg>
+<span>Ver Logs</span>
+</button>
+</div>
+</div>
+<div class="leiasp-grid" id="leiasp-grid">
+<div class="empty-state">
+<div class="spinner"></div>
+<p>Carregando livros do LeiaSP...</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<div class="modal-overlay hidden" id="modal-task">
+<div aria-modal="true" class="modal-card glass-panel" role="dialog">
+<div class="modal-header">
+<div class="modal-title-group">
+<span class="badge badge-indigo" id="modal-task-badge">Tarefa</span>
+<h3 class="modal-title" id="modal-task-title">Título da Atividade</h3>
+</div>
+<button aria-label="Fechar Modal" class="btn-close" id="btn-close-modal">×</button>
+</div>
+<div class="modal-body" id="modal-task-body">
+<div class="loading-state" id="task-loading">
+<div class="spinner lg"></div>
+<p class="loading-text">Carregando conteúdo e processando CAPTCHA...</p>
+</div>
+<div class="task-content hidden" id="task-content">
+<div class="task-info-banner" id="task-description"></div>
+<div class="questions-container" id="questions-container"></div>
+<div class="essay-editor-container hidden" id="essay-editor-container">
+<div class="form-group">
+<label for="essay-title-input">Título da Redação</label>
+<input class="form-control" id="essay-title-input" placeholder="O título sugerido pela IA aparecerá aqui..." type="text"/>
+</div>
+<div class="form-group">
+<div class="label-with-meta">
+<label for="essay-body-input">Corpo do Texto</label>
+<div class="char-counter" id="essay-char-counter">0 caracteres (Mín: 0 / Máx: 0)</div>
+</div>
+<textarea class="form-control essay-textarea" id="essay-body-input" placeholder="O texto da redação será gerado pela IA ou pode ser editado manualmente aqui..." rows="12"></textarea>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<div class="ai-status-pill" id="ai-model-tag">
+<span class="status-dot"></span>
+<span id="ai-model-name">IA Pronta para Resolução</span>
+</div>
+<div class="modal-actions">
+<button class="btn btn-ai" id="btn-ai-fill">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16">
+<path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
+</svg>
+<span>Resolver com IA</span>
+</button>
+<button class="btn btn-secondary" id="btn-submit-delayed" title="Simula tempo humano de resolução antes do envio">
+<svg fill="none" height="15" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="15">
+<circle cx="12" cy="12" r="10"></circle>
+<polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+<span>Enviar com Atraso</span>
+</button>
+<button class="btn btn-primary" id="btn-submit-now">
+<svg fill="none" height="15" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="15">
+<line x1="22" x2="11" y1="2" y2="13"></line>
+<polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+</svg>
+<span>Enviar Agora</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-overlay hidden" id="modal-matific-sim">
+<div aria-modal="true" class="modal-card glass-panel" role="dialog">
+<div class="modal-header">
+<div class="modal-title-group">
+<span class="badge badge-cyan">Matific</span>
+<h3 class="modal-title" id="modal-matific-title">Título do Episódio</h3>
+</div>
+<button aria-label="Fechar Modal" class="btn-close" id="btn-close-matific-modal">×</button>
+</div>
+<div class="modal-body">
+<div id="matific-sim-setup">
+<div class="form-row-grid">
+<div class="form-group">
+<label for="sim-accuracy">Precisão Alvo</label>
+<select class="form-control" id="sim-accuracy">
+<option value="realistic">Realista (Erros naturais simulados ~90%)</option>
+<option value="perfect">100% Perfeito (Nota Máxima)</option>
+</select>
+</div>
+<div class="form-group">
+<label for="sim-speed">Velocidade da Execução</label>
+<select class="form-control" id="sim-speed">
+<option value="fast">Rápido (~30s a 1min)</option>
+<option value="human">Humanizado com Delays (~2 a 4min)</option>
+</select>
+</div>
+</div>
+</div>
+<div class="matific-sim-progress-area">
+<div class="batch-progress-labels">
+<span id="matific-sim-status-text">Pronto para iniciar</span>
+<span id="matific-sim-percent">0%</span>
+</div>
+<div class="progress-bar-bg">
+<div class="progress-bar-fill" id="matific-sim-progress-fill" style="width: 0%;"></div>
+</div>
+</div>
+<div class="terminal-container">
+<div class="terminal-header">
+<span class="terminal-dot red"></span>
+<span class="terminal-dot yellow"></span>
+<span class="terminal-dot green"></span>
+<span class="terminal-title">Log de Telemetria Matific</span>
+</div>
+<div class="terminal-body" id="matific-sim-logs">
+<div class="log-line text-muted">Clique em "Iniciar Simulação" para executar o episódio.</div>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<div class="ai-status-pill">
+<span class="status-dot"></span>
+<span>Motor Anti-Detecção Ativo</span>
+</div>
+<div class="modal-actions">
+<button class="btn btn-primary" id="btn-start-matific-sim">
+<svg fill="none" height="15" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="15"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+<span>Iniciar Simulação</span>
+</button>
+<button class="btn btn-danger hidden" id="btn-stop-matific-sim">
+<svg fill="none" height="15" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="15"><rect height="12" width="12" x="6" y="6"></rect></svg>
+<span>Parar</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-overlay hidden" id="modal-matific-stats">
+<div aria-modal="true" class="modal-card sm glass-panel" role="dialog">
+<div class="modal-header">
+<div class="modal-title-group">
+<span class="badge badge-cyan">Editor de Stats</span>
+<h3 class="modal-title">Ajustar Moedas e XP</h3>
+</div>
+<button aria-label="Fechar Modal" class="btn-close" id="btn-close-stats-modal">×</button>
+</div>
+<div class="modal-body">
+<div class="form-group">
+<label for="input-edit-coins">Saldo de Moedas (0 a 200.000)</label>
+<input class="form-control" id="input-edit-coins" max="200000" min="0" type="number"/>
+</div>
+<div class="form-group">
+<label for="input-edit-xp">Pontos XP (0 a 2.000)</label>
+<input class="form-control" id="input-edit-xp" max="2000" min="0" type="number"/>
+</div>
+<div class="form-group">
+<label for="input-edit-rank">Rank do Aluno (1 a 150)</label>
+<input class="form-control" id="input-edit-rank" max="150" min="1" type="number"/>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-primary btn-block" id="btn-save-matific-stats">Salvar no Servidor</button>
+</div>
+</div>
+</div>
+<div class="modal-overlay hidden" id="modal-leiasp-reader">
+<div class="modal-card glass-panel" style="max-width: 600px;">
+<div class="modal-header">
+<div class="modal-title-group">
+<span class="badge badge-emerald">LeiaSP • Colibrio</span>
+<h3 class="modal-title" id="leiasp-modal-title">Leitura Humanizada de Livro</h3>
+</div>
+<button class="btn-close" id="btn-close-leiasp-modal">×</button>
+</div>
+<div class="modal-body">
+<div id="leiasp-config-view">
+<div class="form-group">
+<label>Livro Selecionado</label>
+<input class="form-control" id="leiasp-book-name-input" readonly="" style="background: rgba(255,255,255,0.05);" type="text"/>
+</div>
+<div class="form-row-grid">
+<div class="form-group">
+<label for="leiasp-min-time">Tempo Mínimo por Pág. (s)</label>
+<input class="form-control" id="leiasp-min-time" max="120" min="10" type="number" value="20"/>
+</div>
+<div class="form-group">
+<label for="leiasp-max-time">Tempo Máximo por Pág. (s)</label>
+<input class="form-control" id="leiasp-max-time" max="180" min="15" type="number" value="40"/>
+</div>
+</div>
+<div class="form-group">
+<label class="checkbox-container" style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.9rem;">
+<input checked="" id="leiasp-auto-quiz" type="checkbox"/>
+<span>Resolver Questionário (Quiz) automaticamente com IA após a leitura</span>
+</label>
+</div>
+<div style="margin-top: 20px;">
+<button class="btn btn-primary btn-block" id="btn-start-leiasp-read">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+<span>Iniciar Leitura Humanizada</span>
+</button>
+</div>
+</div>
+<div class="hidden" id="leiasp-progress-view">
+<div class="batch-status-card glass-panel" style="margin-bottom: 15px;">
+<div class="batch-header-status">
+<div>
+<span class="status-indicator-dot"></span>
+<span id="leiasp-job-status-text">Lendo livro...</span>
+</div>
+<span id="leiasp-job-percent" style="font-weight: 700; color: #10b981;">0%</span>
+</div>
+<div class="progress-bar-bg" style="background: rgba(255,255,255,0.08); height: 8px; border-radius: 4px; overflow: hidden; margin: 10px 0;">
+<div id="leiasp-progress-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #10b981, #06b6d4); transition: width 0.3s ease;"></div>
+</div>
+<div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #94a3b8;">
+<span>Página: <strong id="leiasp-page-counter" style="color: #f1f5f9;">0/0</strong></span>
+<span>Status: <strong id="leiasp-job-state" style="color: #f1f5f9;">Em andamento</strong></span>
+</div>
+</div>
+<div class="terminal-container">
+<div class="terminal-header">
+<span class="terminal-title">Telemetria Colibrio &amp; Logs</span>
+</div>
+<div class="terminal-body" id="leiasp-logs-box" style="max-height: 220px; overflow-y: auto;">
+<div class="log-line text-muted">Aguardando início do job...</div>
+</div>
+</div>
+<div class="leiasp-progress-actions">
+<button class="btn btn-secondary" id="btn-modal-pause-resume">
+<svg fill="none" height="15" id="icon-modal-pause" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="15"><rect height="16" width="4" x="6" y="4"></rect><rect height="16" width="4" x="14" y="4"></rect></svg>
+<span id="btn-modal-pause-text">Pausar</span>
+</button>
+<button class="btn btn-danger" id="btn-stop-leiasp-read">
+<svg fill="none" height="15" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="15"><rect height="12" width="12" x="6" y="6"></rect></svg>
+<span>Interromper</span>
+</button>
+<button class="btn btn-secondary btn-minimize" id="btn-modal-minimize" title="Continuar em segundo plano">
+<svg fill="none" height="15" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="15"><polyline points="4 14 10 14 10 20"></polyline><polyline points="20 10 14 10 14 4"></polyline></svg>
+<span>Minimizar</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script src="/static/vendor/dompurify/purify.min.js"></script>
+<script src="/static/js/safe-dom.js"></script>
+<script src="/static/js/app.js"></script>
+<div aria-label="Hyper Futuro X" hidden="" id="hyperShell"><iframe id="hyperMenuFrame" src="/static/hyper/menu.html" title="Hyper Futuro X — Painel"></iframe></div><script>(function(){'use strict';const embedded=new URLSearchParams(location.search).has('hyper_embedded');if(embedded)document.documentElement.classList.add('hyper-embedded-mode');const shell=document.getElementById('hyperShell');const dashboard=document.getElementById('view-dashboard');const auth=document.getElementById('view-auth');function sync(){if(embedded)return;const logged=dashboard?.classList.contains('active');shell.hidden=!logged;shell.classList.toggle('is-active',!!logged);if(logged){const f=document.getElementById('hyperMenuFrame');if(f?.contentWindow)f.contentWindow.postMessage({type:'hyper-profile'},location.origin)}if(!logged){const f=document.getElementById('hyperMenuFrame');if(f?.contentWindow)f.contentWindow.postMessage({type:'hyper-logged-out'},location.origin)}}function selectTab(tab){if(!/^tab-(tasks|essays|matific|leiasp)$/.test(tab))return;const b=document.querySelector('[data-tab="'+tab+'"]');if(b)b.click()}window.addEventListener('message',e=>{if(e.origin!==location.origin)return;if(e.data?.type==='hyper-open-original'&&embedded)selectTab(e.data.tab);if(e.data?.type==='hyper-logout'&&!embedded){document.getElementById('btn-logout')?.click()}});document.addEventListener('DOMContentLoaded',()=>{const f=document.getElementById('hyperMenuFrame');f?.addEventListener('load',sync);new MutationObserver(sync).observe(dashboard,{attributes:true,attributeFilter:['class']});sync();if(embedded){const t=decodeURIComponent(location.hash.slice(1));const observer=new MutationObserver(()=>{if(dashboard.classList.contains('active')){selectTab(t);observer.disconnect()}});observer.observe(dashboard,{attributes:true,attributeFilter:['class']});if(dashboard.classList.contains('active')){selectTab(t);observer.disconnect()}}});})();</script></body>
+</html>
